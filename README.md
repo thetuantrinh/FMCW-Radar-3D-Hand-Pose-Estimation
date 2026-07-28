@@ -16,6 +16,7 @@ An end-to-end deep learning repository for **3D Hand Pose Estimation directly fr
 - [System Architecture](#-system-architecture)
 - [Repository Structure](#-repository-structure)
 - [Installation & Setup](#-installation--setup)
+- [Experimental System Environment](#-experimental-system-environment)
 - [Dataset Preparation](#-dataset-preparation)
 - [Pipeline Workflow](#-pipeline-workflow)
   - [1. Download Offline Depth Model](#1-download-offline-depth-model)
@@ -139,6 +140,13 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
 # 4. Install remaining dependencies
 pip install -r requirements.txt
 ```
+
+---
+
+## 🧪 Experimental System Environment
+
+- **Training & Testing**: AlmaLinux 8.5 (Arctic Sphynx) (NVIDIA DGX A100-SXM4-40GB)
+- **Inference Deployment**: NVIDIA Jetson Nano (Tegra X1, Quad-core ARM Cortex-A57 CPU, 128-core Maxwell GPU)
 
 ---
 
