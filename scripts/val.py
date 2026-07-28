@@ -10,7 +10,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.network import DevModel7
+from core.network import RadarHPE3DNet
 from core import helper
 from core import transformations
 from core import dataloader
@@ -91,7 +91,7 @@ def main():
         pin_memory=True,
     )
     
-    model = DevModel7().to(device)
+    model = RadarHPE3DNet().to(device)
     
     # Load model weights
     checkpoint_path = args.checkpoint_path

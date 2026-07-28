@@ -23,8 +23,6 @@ An end-to-end deep learning repository for **3D Hand Pose Estimation directly fr
   - [3. Train Radar HPE-3D Network](#3-train-radar-hpe-3d-network)
   - [4. Model Evaluation](#4-model-evaluation)
   - [5. Inference & Video Generation](#5-inference--video-generation)
-- [Evaluation Metrics](#-evaluation-metrics)
-- [Experimental Results](#-experimental-results)
 - [License](#-license)
 
 ---
@@ -34,7 +32,7 @@ An end-to-end deep learning repository for **3D Hand Pose Estimation directly fr
 Traditional vision-based 3D Hand Pose Estimation (HPE) suffers in poor lighting conditions, thermal variation, and privacy-sensitive scenarios. FMCW (Frequency-Modulated Continuous-Wave) Radar provides a robust, privacy-preserving alternative that works in complete darkness.
 
 This repository provides:
-1. **Radar 3D Hand Pose Estimation Model (`DevModel7`)**: A 2D Convolutional Neural Network with Residual Blocks designed to predict **21 3D hand keypoints $(x, y, z)$**, **hand presence**, and **handedness** directly from $(8, 64, 64)$ radar tensor frames.
+1. **Radar 3D Hand Pose Estimation Model (`RadarHPE3DNet`)**: A 2D Convolutional Neural Network with Residual Blocks designed to predict **21 3D hand keypoints $(x, y, z)$**, **hand presence**, and **handedness** directly from $(8, 64, 64)$ radar tensor frames.
 2. **Offline 3D Pseudo-Labeling Pipeline**: Automatically converts 2D [MediaPipe](https://github.com/google-ai-edge/mediapipe) hand keypoints into 3D metric annotations by extracting depth maps using **[Depth Anything V2 Large](https://huggingface.co/depth-anything/Depth-Anything-V2-Large-hf)** calibrated to hand interaction distances ($10\text{--}55\text{ cm}$).
 
 ---
@@ -63,7 +61,7 @@ This repository provides:
                +-------------------------------------------------------+
                |              RADAR HPE-3D MODEL TRAINING              |
                |                                                       |
-Radar Input ---+--> DevModel7 Backbone --------------------------------+
+Radar Input ---+--> RadarHPE3DNet Backbone ----------------------------+
 (8, 64, 64)    |   ├── ResNet Feature Extractor                        |
                |   ├── 3D Keypoint Regressor  --> 21 x 3 Coordinates   |
                |   ├── Hand Presence Head     --> Sigmoid Confidence   |
@@ -79,7 +77,7 @@ Radar Input ---+--> DevModel7 Backbone --------------------------------+
 FMCW-Radar-3D-Hand-Pose-Estimation/
 ├── core/                         # Core Deep Learning Modules
 │   ├── __init__.py
-│   ├── network.py                # DevModel7 PyTorch Network Architecture
+│   ├── network.py                # RadarHPE3DNet PyTorch Network Architecture
 │   ├── dataloader.py             # Radar & 3D GT JSON Pair DataLoader
 │   ├── training_engine.py        # Trainer class with multi-loss logic
 │   ├── transformations.py        # Tensor transforms & augmentations
@@ -189,7 +187,7 @@ python3 tools/generate_depth.py \
 
 ### 3. Train Radar HPE-3D Network
 
-Train the `DevModel7` network directly on radar tensors supervised by 3D GT:
+Train the `RadarHPE3DNet` network directly on radar tensors supervised by 3D GT:
 
 ```bash
 python3 scripts/train.py \
@@ -225,29 +223,7 @@ python3 scripts/infer.py
 
 ---
 
-## 📈 Evaluation Metrics
-
-The pipeline measures performance using standard 3D pose estimation benchmarks:
-
-- **MPJPE (Mean Per Joint Position Error)**: Measures average Euclidean distance error across all 21 hand joints in 3D metric space:
-  $$\text{MPJPE} = \frac{1}{N \cdot 21} \sum_{i=1}^N \sum_{j=1}^{21} \|\mathbf{p}_{i,j} - \mathbf{\hat{p}}_{i,j}\|_2$$
-- **PCK@th (Percentage of Correct Keypoints)**: Percentage of predicted keypoints within distance threshold $\delta$ (e.g. PCK@0.05 for 5 cm threshold).
-
----
-
-## 📊 Experimental Results
-
-Typical convergence profile achieved after 50 epochs of training on `DevModel7`:
-
-| Metric | Value |
-| :--- | :--- |
-| **Best 3D Keypoint Regression Loss (L1)** | **0.7995** |
-| **Hand Presence Loss (BCE)** | **0.0057** |
-| **Handedness Classification Loss (BCE)** | **0.0575** |
-| **Total Model Parameters** | **11.20 M** |
-
----
-
 ## 📜 License
 
 This project is licensed under the [MIT License](LICENSE).
+

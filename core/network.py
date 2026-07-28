@@ -121,7 +121,7 @@ class Bottleneck(nn.Module):
         return out
 
 
-class DevModel7(nn.Module):
+class RadarHPE3DNet(nn.Module):
     def __init__(
         self,
         expansion: int = 2,
@@ -130,7 +130,7 @@ class DevModel7(nn.Module):
         block: Union[Type[ResidualBlock], Type[Bottleneck]] = ResidualBlock,
         keypoints: int = 21,
     ):
-        super(DevModel7, self).__init__()
+        super(RadarHPE3DNet, self).__init__()
         self.keypoints = keypoints
 
         # Input projection

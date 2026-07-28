@@ -20,7 +20,7 @@ sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '
 from depth_engine import DepthEstimator
 from annotation_updater import scale_depth
 
-from core.network import DevModel7
+from core.network import RadarHPE3DNet
 from core import transformations
 
 run = 9
@@ -264,10 +264,10 @@ def main():
     )
 
     # --- Load Network Model ---
-    model = DevModel7().to(device)
+    model = RadarHPE3DNet().to(device)
     if not os.path.exists(MODEL_CHECKPOINT):
         print("Initializing Radar Hand Pose Model...")
-    model = DevModel7().to(device)
+    model = RadarHPE3DNet().to(device)
     checkpoint = torch.load(MODEL_CHECKPOINT, map_location=device)
     if isinstance(checkpoint, dict) and "state_dict" in checkpoint:
         model.load_state_dict(checkpoint["state_dict"])

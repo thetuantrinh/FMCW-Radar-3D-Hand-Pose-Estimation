@@ -11,7 +11,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.network import DevModel7
+from core.network import RadarHPE3DNet
 from core import helper
 from core import transformations
 from core import dataloader
@@ -139,7 +139,7 @@ def main():
     
     # --- Data and Model Setup ---
     train_loader, val_loader = setup_data_loaders(args)
-    model = DevModel7().to(device)
+    model = RadarHPE3DNet().to(device)
 
     # --- Logging and Summaries ---
     logger.log_section_header("CONFIGURATION")

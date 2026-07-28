@@ -15,7 +15,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.network import DevModel7
+from core.network import RadarHPE3DNet
 from core import transformations
 
 run = 9
@@ -212,7 +212,7 @@ def main():
     )
 
     # --- Load Network Model ---
-    model = DevModel7().to(device)
+    model = RadarHPE3DNet().to(device)
     if not os.path.exists(MODEL_CHECKPOINT):
         raise FileNotFoundError(f"Model checkpoint not found at: {MODEL_CHECKPOINT}")
     checkpoint = torch.load(MODEL_CHECKPOINT, map_location=device)
