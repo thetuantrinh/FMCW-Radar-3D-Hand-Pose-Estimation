@@ -1,6 +1,6 @@
 # Dataset Structure Guidelines
 
-The FMCW Radar 3D Hand Pose Estimation dataset relies on synchronized radar tensors, 2D MediaPipe hand keypoint JSONs, and offline 3D depth ground truth.
+The FMCW Radar 3D Hand Pose Estimation dataset relies on synchronized radar tensors, 2D [MediaPipe](https://github.com/google-ai-edge/mediapipe) hand keypoint JSONs, and offline 3D depth ground truth generated via [Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2).
 
 ## Expected Directory Layout
 
@@ -16,11 +16,11 @@ dataset/raw_ds/
 │   ├── frame_0001.jpg
 │   ├── frame_0002.jpg
 │   └── ...
-├── matched_camera_hand_json/# 2D ground truth keypoints (MediaPipe)
+├── matched_camera_hand_json/# 2D ground truth keypoints ([MediaPipe](https://github.com/google-ai-edge/mediapipe))
 │   ├── frame_0001.json
 │   ├── frame_0002.json
 │   └── ...
-└── matched_camera_hand_json_3d/ # Output generated 3D ground truth keypoint JSONs
+└── matched_camera_hand_json_3d/ # Output generated 3D ground truth keypoint JSONs ([Depth Anything V2](https://huggingface.co/depth-anything/Depth-Anything-V2-Large-hf))
     ├── frame_0001.json
     ├── frame_0002.json
     └── ...

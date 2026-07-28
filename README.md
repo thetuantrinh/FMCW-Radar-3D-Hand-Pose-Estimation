@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CUDA Supported](https://img.shields.io/badge/CUDA-11.8%20%7C%2012.1-green.svg)](https://developer.nvidia.com/cuda-toolkit)
 
-An end-to-end deep learning repository for **3D Hand Pose Estimation directly from FMCW Radar signals**, featuring an offline pseudo-labeling pipeline using **Depth Anything V2** to automatically generate metric 3D hand ground truth annotations.
+An end-to-end deep learning repository for **3D Hand Pose Estimation directly from FMCW Radar signals**, featuring an offline pseudo-labeling pipeline using **[Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2)** to automatically generate metric 3D hand ground truth annotations.
 
 ---
 
@@ -35,7 +35,7 @@ Traditional vision-based 3D Hand Pose Estimation (HPE) suffers in poor lighting 
 
 This repository provides:
 1. **Radar 3D Hand Pose Estimation Model (`DevModel7`)**: A 2D Convolutional Neural Network with Residual Blocks designed to predict **21 3D hand keypoints $(x, y, z)$**, **hand presence**, and **handedness** directly from $(8, 64, 64)$ radar tensor frames.
-2. **Offline 3D Pseudo-Labeling Pipeline**: Automatically converts 2D MediaPipe hand keypoints into 3D metric annotations by extracting depth maps using **Depth Anything V2 Large** calibrated to hand interaction distances ($10\text{--}55\text{ cm}$).
+2. **Offline 3D Pseudo-Labeling Pipeline**: Automatically converts 2D [MediaPipe](https://github.com/google-ai-edge/mediapipe) hand keypoints into 3D metric annotations by extracting depth maps using **[Depth Anything V2 Large](https://huggingface.co/depth-anything/Depth-Anything-V2-Large-hf)** calibrated to hand interaction distances ($10\text{--}55\text{ cm}$).
 
 ---
 
@@ -164,7 +164,7 @@ Refer to [`dataset/README.md`](dataset/README.md) for full schema details.
 
 ### 1. Download Offline Depth Model
 
-On a node with internet access (e.g. HPC Gateway), download **Depth Anything V2 Large**:
+On a node with internet access (e.g. HPC Gateway), download **[Depth Anything V2 Large](https://huggingface.co/depth-anything/Depth-Anything-V2-Large-hf)**:
 
 ```bash
 python3 tools/download_model.py \
