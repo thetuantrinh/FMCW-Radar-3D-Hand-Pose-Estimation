@@ -32,6 +32,10 @@ An end-to-end deep learning repository for **3D Hand Pose Estimation directly fr
 
 Traditional vision-based 3D Hand Pose Estimation (HPE) suffers in poor lighting conditions, thermal variation, and privacy-sensitive scenarios. FMCW (Frequency-Modulated Continuous-Wave) Radar provides a robust, privacy-preserving alternative that works in complete darkness.
 
+<p align="center">
+  <img src="demos/demo.png" alt="FMCW Radar 3D Hand Pose Estimation Demo" width="100%"/>
+</p>
+
 This repository provides:
 1. **Radar 3D Hand Pose Estimation Model (`RadarHPE3DNet`)**: A 2D Convolutional Neural Network with Residual Blocks designed to predict **21 3D hand keypoints $(x, y, z)$**, **hand presence**, and **handedness** directly from $(8, 64, 64)$ radar tensor frames.
 2. **Offline 3D Pseudo-Labeling Pipeline**: Automatically converts 2D [MediaPipe](https://github.com/google-ai-edge/mediapipe) hand keypoints (from the [2D Hand Pose Dataset](https://github.com/thetuantrinh/UWB-Radar-Hand-Pose-Estimation/tree/main/dataset)) into 3D metric annotations by extracting depth maps using **[Depth Anything V2 Large](https://huggingface.co/depth-anything/Depth-Anything-V2-Large-hf)** calibrated to hand interaction distances ($10\text{--}55\text{ cm}$).
