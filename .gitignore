@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyTorch and Checkpoint files
+*.pt
+*.pth
+*.onnx
+*.engine
+results/
+run_*/
+
+# Pretrained model weights
+tools/weights/
+weights/
+
+# Datasets and heavy binary files
+dataset/raw_ds/*
+!dataset/raw_ds/.gitkeep
+dataset/*.npy
+dataset/*.hdf5
+dataset/*.h5
+
+# Demos & output media files
+demos/*.mp4
+output/*.mp4
+
+# Environment and IDE settings
+.venv/
+env/
+venv/
+ENV/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
